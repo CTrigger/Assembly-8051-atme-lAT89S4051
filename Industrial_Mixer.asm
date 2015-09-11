@@ -4,14 +4,14 @@
 ;	Brazil, Engineer Student.	10/09/2015
 ;================================================================
 
-valA    equ     p0.0    ;valvula A
-valB    equ     p0.1    ;valvula B
-valC    equ     p0.2    ;valvula C
+valA    equ     p0.0    ;valve A
+valB    equ     p0.1    ;valve B
+valC    equ     p0.2    ;valve C
 senE    equ     p0.3    ;sensor Empty
 senH    equ     p0.4    ;sensor Half
 senF    equ     p0.5    ;sensor Full
 motor   equ     p0.6    ;Motor
-buzzer  equ     p0.7    ;Alarme sonoro
+buzzer  equ     p0.7    ;Sound Alarm
  
         ORG     0000H
         jmp     preset
