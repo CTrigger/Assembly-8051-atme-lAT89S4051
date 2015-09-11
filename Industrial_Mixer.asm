@@ -1,7 +1,7 @@
 ;================================================================
-;				created by Ricardo Kim
+;	created by: Ricardo Kim
 ;     
-;				Brazil, Engineer Student.				10/09/2015
+;	Brazil, Engineer Student.	10/09/2015
 ;================================================================
 
 valA    equ     p0.0    ;valvula A
