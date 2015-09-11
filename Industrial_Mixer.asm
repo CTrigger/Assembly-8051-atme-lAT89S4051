@@ -10,7 +10,7 @@ valC    equ     p0.2    ;valve C
 senE    equ     p0.3    ;sensor Empty
 senH    equ     p0.4    ;sensor Half
 senF    equ     p0.5    ;sensor Full
-motor   equ     p0.6    ;Motor
+motor   equ     p0.6    ;Mixer Motor
 buzzer  equ     p0.7    ;Sound Alarm
  
         ORG     0000H
