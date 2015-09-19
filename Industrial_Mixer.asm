@@ -1,4 +1,3 @@
-$mod51
 ;================================================================
 ;	created by: Ricardo Kim
 ;     
@@ -56,27 +55,26 @@ delay0:
         setb    00
         reti
 
-
-
 delay1:
-
-	mov     th0,#015H
-        mov     tl0,#09FH
+	mov     th0,#000H
+        mov     tl0,#000H
 	setb    tr0
         jnb     00,$
         setb	00
 	
        	ret
 
+
 delay2:
 	mov 	r0,#0FFh
 	mov 	r1,#0FFh
-	mov	r2,#
+	mov	r2,#017h
 
 AS:	djnz 	r0,$
 	djnz	r1,AS
 	djnz	r2,AS
 
+	ret
 
 inicio:
 
@@ -95,7 +93,7 @@ inicio:
         jb      senE,$
 	clr	buzzer
         setb	valC
-        call    delay1
+        call    delay2
         setb	buzzer
 
 	jmp     inicio
@@ -104,4 +102,3 @@ inicio:
  
 
 	end
-
