@@ -1,69 +1,107 @@
+$mod51
 ;================================================================
 ;	created by: Ricardo Kim
 ;     
 ;	Brazil, Engineer Student.	10/09/2015
 ;================================================================
 
-valA    equ     p0.0    ;valve A
-valB    equ     p0.1    ;valve B
-valC    equ     p0.2    ;valve C
-senE    equ     p0.3    ;sensor Empty
-senH    equ     p0.4    ;sensor Half
-senF    equ     p0.5    ;sensor Full
-motor   equ     p0.6    ;Mixer Motor
-buzzer  equ     p0.7    ;Sound Alarm
+buzzer	equ     p0.0    ;Buzzer
+
+valA	equ	p0.6	;valve A
+valB    equ     p0.5    ;valve B
+valC    equ     p0.4    ;valve C
+
+senE	equ     p1.7    ;sensor Empty
+senH	equ     p1.2    ;sensor Half
+senF	equ     p1.1    ;sensor Full
+
+motor   equ     p0.3    ;Mixer Motor
+
  
-        ORG     0000H
-        jmp     preset
- 
-        ORG     000BH
-        jmp     delay0
- 
+	ORG     0000H	
+	jmp     preset
+
+
+ 	ORG     000BH
+	jmp     delay0
+
+
+
 preset:
-        clr     vala
-        clr     valb
-        clr     valc
-        clr     motor
-        clr     buzzer
- 
+
+
+	setb	vala
+	setb	valb
+	setb	valc
+	setb	motor
+	setb	buzzer
+;	clr	vala
+;	clr	valb
+;	clr	valc
+;	clr	motor
+;	clr	buzzer
+
         mov     IE,#10000010B
         mov     IP,#00000001B
+
         mov     TMOD,#01h
+
         ljmp    inicio
  
+
+
 delay0:
+
         clr     tr0
         setb    00
         reti
- 
+
+
+
 delay1:
-        mov     th0,#0FFH
-        mov     tl0,#0E0H
-        setb    tr0
+
+	mov     th0,#015H
+        mov     tl0,#09FH
+	setb    tr0
         jnb     00,$
-        clr     00
-        ret
- 
+        setb	00
+	
+       	ret
+
+delay2:
+	mov 	r0,#0FFh
+	mov 	r1,#0FFh
+	mov	r2,#
+
+AS:	djnz 	r0,$
+	djnz	r1,AS
+	djnz	r2,AS
+
+
 inicio:
-        setb    valA
+
+	clr	valA
+
         jb      senH,$
- 
-        clr     valA
-        setb    valB
-        setb    motor
+	setb	valA
+        clr	valB
+        clr	motor
+
         jb      senF,$
- 
-        clr     valB
-        clr     motor
-        setb    valC
+	setb	valB
+        setb	motor
+        clr	valC
+
         jb      senE,$
- 
-        setb    buzzer
-        clr     valC
+	clr	buzzer
+        setb	valC
         call    delay1
-        clr     buzzer
+        setb	buzzer
+
+	jmp     inicio
+
  
-        jmp     inicio
  
- 
-end
+
+	end
+
