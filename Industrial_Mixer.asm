@@ -24,7 +24,8 @@ motor   equ     p0.3    ;Mixer Motor
  	ORG     000BH
 	jmp     delay0
 
-
+	ORG	001BH
+	jmp	delay0
 
 preset:
 
@@ -40,10 +41,10 @@ preset:
 ;	clr	motor
 ;	clr	buzzer
 
-        mov     IE,#10000010B
-        mov     IP,#00000001B
+        mov     IE,#10001010B
+        mov     IP,#00000101B
 
-        mov     TMOD,#01h
+        mov     TMOD,#00010001B
 
         ljmp    inicio
  
@@ -52,15 +53,25 @@ preset:
 delay0:
 
         clr     tr0
+        clr	tr1
         setb    00
+        setb	01
         reti
 
 delay1:
-	mov     th0,#000H
+	mov     th0,#0ffH
         mov     tl0,#000H
+        mov     th1,#0ffH
+        mov     tl1,#0ffH
+        
 	setb    tr0
+	clr	00
         jnb     00,$
-        setb	00
+        
+        setb    tr1
+        clr	01
+        jnb     01,$
+        
 	
        	ret
 
@@ -93,7 +104,7 @@ inicio:
         jb      senE,$
 	clr	buzzer
         setb	valC
-        call    delay2
+        call    delay1
         setb	buzzer
 
 	jmp     inicio
