@@ -89,19 +89,32 @@ AS:	djnz 	r0,$
 
 inicio:
 
+blocoA:	
+	jnb	senF,erro
+	jnb	senH,Erro
+	jb	senE,BlocoA
 	clr	valA
 
-        jb      senH,$
+blocoB:
+	jnb	senF,erro
+        jb      senH,BlocoB
+        jnb	senE,erro
 	setb	valA
         clr	valB
         clr	motor
 
-        jb      senF,$
-	setb	valB
+blocoC:
+	jnb	senE,erro
+	jb	senH,erro
+        jb      senF,blocoC
+       	setb	valB
         setb	motor
         clr	valC
 
-        jb      senE,$
+blocoD:
+        jb      senE,blocoD
+        jnb	senF,erro
+	jnb	senH,erro
 	clr	buzzer
         setb	valC
         call    delay1
@@ -109,7 +122,18 @@ inicio:
 
 	jmp     inicio
 
- 
+ erro:
+
+	clr	buzzer
+	call	delay1
+	setb	buzzer
+	call	delay1
+
+
+ 	jb 	senE,erro
+ 	jnb	senH,erro
+ 	jnb	senF,erro
+ 	jmp	BlocoA
  
 
 	end
