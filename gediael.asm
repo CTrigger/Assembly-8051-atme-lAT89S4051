@@ -1,7 +1,7 @@
 ;================================================================
 ;	created by: Ricardo Kim
 ;     
-;	Brazil, Engineer Student.	10/09/2015
+;	Brazil, Engineer Student.
 ;================================================================
 til78	equ	p1.3
 ledA	equ	p2.4
@@ -25,7 +25,6 @@ preset:
 	mov     IE,#10001010B	;──Habilita interrupção: EA,ET1,ET0
 	mov     IP,#00000101B	;──Habilita interrupção: PX1,PX0
 	mov     TMOD,#00010001B	;──Habilita timers: M10, M00
-	;mov     TMOD,#00000001B	;──Habilita timers: M10, M00
 	ljmp    lampON		;──Salto para Inicio
  
 
@@ -61,7 +60,7 @@ lampON:
 
 	jnb	til78,$
 	jb	til78,$
-	mov	r0,#113d
+	mov	r0,#113d ; timer  =~ 15 sec
 time1:	call	delay1
 	djnz	r0,time1
 
@@ -75,7 +74,7 @@ lampOFF:
 
 	jnb	til78,$
 	jb	til78,$
-	mov	r0,#113d
+	mov	r0,#113d ; timer  =~ 15 sec
 time2:	call	delay1
 	djnz	r0,time2
 
